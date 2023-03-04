@@ -1,0 +1,3 @@
+//! # インフラクレート
+
+pub mod repository;

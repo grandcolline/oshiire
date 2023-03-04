@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  db:
+    image: mysql:8.0
+    volumes:
+      - ./.docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
+    environment:
+      - MYSQL_DATABASE=task
+      - MYSQL_USER=app
+      - MYSQL_PASSWORD=password
+      - MYSQL_ROOT_PASSWORD=password
+      - TZ=Asia/Tokyo
+    ports:
+      - 3306:3306
