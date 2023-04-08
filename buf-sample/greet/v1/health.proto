@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package greet.v1;
+
+import "google/protobuf/empty.proto";
+
+message CheckResponse {
+  string msg = 1;
+}
+
+service HealthService {
+  rpc Check(google.protobuf.Empty) returns (CheckResponse) {}
+}

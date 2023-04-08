@@ -6,3 +6,5 @@ breaking:
 lint:
   use:
     - DEFAULT
+  ignore:
+    - google/type/datetime.proto
