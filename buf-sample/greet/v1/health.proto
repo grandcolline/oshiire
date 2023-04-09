@@ -4,10 +4,12 @@ package greet.v1;
 
 import "google/protobuf/empty.proto";
 
+// ヘルスチェックレスポンス
 message CheckResponse {
   string msg = 1;
 }
 
+// ヘルスチェック用に使用するサービス
 service HealthService {
   rpc Check(google.protobuf.Empty) returns (CheckResponse) {}
 }
