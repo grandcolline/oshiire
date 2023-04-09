@@ -5,11 +5,12 @@ import (
 	"flag"
 	"net/http"
 
-	// "github.com/golang/glog"
+	"github.com/golang/glog"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"google.golang.org/grpc"
 
-	gw "github.com/grandcolline/oshiire/grpc-gateway/gen/go/greet/v1"
+	gw "github.com/grandcolline/oshiire/grpc-gateway/gen/gateway/greet/v1"
+	// gw "github.com/grandcolline/oshiire/grpc-gateway/gen/go/greet/v1"
 )
 
 var (
@@ -27,7 +28,8 @@ func run() error {
 	// Note: Make sure the gRPC server is running properly and accessible
 	mux := runtime.NewServeMux()
 	opts := []grpc.DialOption{grpc.WithInsecure()}
-	err := gw.RegisterEchoServiceHandlerFromEndpoint(ctx, mux, *grpcServerEndpoint, opts)
+	// err := gw.RegisterEchoServiceHandlerFromEndpoint(ctx, mux, *grpcServerEndpoint, opts)
+	err := gw.RegisterGreetServiceHandlerFromEndpoint(ctx, mux, *grpcServerEndpoint, opts)
 	if err != nil {
 		return err
 	}
