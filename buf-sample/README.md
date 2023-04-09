@@ -1,13 +1,11 @@
-# buf-sample
-
 buf を色々試してみるレポジトリ
 
-## Schema Registory
+### Schema Registory
 
 https://buf.build/grandcolline/buf-sample
 
 
-## 📝 Note
+### 📝 Note
 
 最初にやったやつ
 ```bash
@@ -30,3 +28,5 @@ push
 ```bash
 buf push
 ```
+
+使う側のコードは [buf-sample-code](../buf-sample-code/)
