@@ -17,6 +17,6 @@ plugins:
       - generate_unbound_methods=true
   # Rust
   - plugin: buf.build/community/neoeinstein-prost
-    out: gen/rust
+    out: gen/rust/src
   - plugin: buf.build/community/neoeinstein-tonic
-    out: gen/rust
+    out: gen/rust/src
