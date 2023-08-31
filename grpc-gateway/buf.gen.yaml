@@ -1,22 +1,32 @@
 version: v1
 plugins:
-  # golang
+  # --------------------
+  # Gateway
+  # --------------------
   - plugin: buf.build/grpc/go
-    out: gen/go
+    out: gateway/pb
     opt:
       - paths=source_relative
   - plugin: buf.build/protocolbuffers/go
-    out: gen/go
+    out: gateway/pb
     opt:
       - paths=source_relative
-  # grpc-gateway
   - plugin: buf.build/grpc-ecosystem/gateway
-    out: gen/gateway
+    out: gateway/pb
     opt:
       - paths=source_relative
       - generate_unbound_methods=true
-  # Rust
+
+  # --------------------
+  #  Remix
+  # --------------------
+  - plugin: buf.build/grpc-ecosystem/grpc-gateway
+    out: pb
+
+  # --------------------
+  #  Rust
+  # --------------------
   - plugin: buf.build/community/neoeinstein-prost
-    out: gen/rust/src
+    out: rust/src/pb
   - plugin: buf.build/community/neoeinstein-tonic
-    out: gen/rust/src
+    out: rust/src/pb

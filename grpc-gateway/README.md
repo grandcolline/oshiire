@@ -1,4 +1,10 @@
+準備
+
 ```
+
+```
+
+```bash
 # proto 作成
 buf generate proto
 ```
@@ -7,13 +13,15 @@ buf generate proto
 
 ### サーバ
 
-```
+```bash
 # サーバ起動
 cd rust
 cargo run
 ```
 
-```
+- `localshot:50051`
+
+```bash
 # サーバに直接アクセス
 grpcurl -plaintext -proto proto/greet/v1/greet.proto \
     -d '{"name":"john"}' \
@@ -22,10 +30,29 @@ grpcurl -plaintext -proto proto/greet/v1/greet.proto \
 
 ### gRPC Gateway
 
-```
+```bash
+# サーバ起動
 cd gateway
 go run main.go
 ```
 
+- `localshot:8081`
+
+```bash
+# gateway 経由でアクセス (rust を起動してあること前提)
+curl -X POST -d '{"name":"john"}' \
+    http://localhost:8081/greet.v1.GreetService/Greet
+```
+
+### Remix
+
+```bash
+cd remix
+npm run dev
+```
+
+- http://localshot:8788
+
 参考:
+
 - https://dev.classmethod.jp/articles/grpc-basic/

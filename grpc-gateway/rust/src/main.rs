@@ -1,4 +1,7 @@
-use proto::greet_v1::{
+pub mod greet_v1 {
+    include!("pb/greet.v1.rs");
+}
+use greet_v1::{
     greet_service_server::{GreetService, GreetServiceServer},
     GreetRequest, GreetResponse,
 };
