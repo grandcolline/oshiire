@@ -1,7 +1,7 @@
 準備
 
 ```
-
+go install github.com/grpc-ecosystem/protoc-gen-grpc-gateway-ts@latest
 ```
 
 ```bash

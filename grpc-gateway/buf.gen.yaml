@@ -20,8 +20,10 @@ plugins:
   # --------------------
   #  Remix
   # --------------------
-  - plugin: buf.build/grpc-ecosystem/grpc-gateway
-    out: pb
+  # local plugin のため、あらかじめ protoc-gen-grpc-gateway-ts を入れておく必要がある
+  # go install github.com/grpc-ecosystem/protoc-gen-grpc-gateway-ts@latest
+  - plugin: grpc-gateway-ts
+    out: remix/app/pb
 
   # --------------------
   #  Rust
