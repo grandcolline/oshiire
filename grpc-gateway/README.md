@@ -1,4 +1,11 @@
-準備
+```mermaid
+flowchart LR
+
+A("フロントエンド(Remix)") -->|http| B(gRPC Gateway)
+B --> |gRPC| C("サーバ(Rust)")
+```
+
+### proto 準備
 
 ```
 go install github.com/grpc-ecosystem/protoc-gen-grpc-gateway-ts@latest
@@ -8,8 +15,6 @@ go install github.com/grpc-ecosystem/protoc-gen-grpc-gateway-ts@latest
 # proto 作成
 buf generate proto
 ```
-
-[フロントエンド(Remix)] -> [gRPC Gateway] -> [サーバ(rust)]
 
 ### サーバ (rust)
 
