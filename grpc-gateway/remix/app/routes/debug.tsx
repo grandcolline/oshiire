@@ -4,7 +4,7 @@ import type {
   ActionArgs,
 } from "@remix-run/cloudflare";
 import { json } from "@remix-run/cloudflare";
-import { getSettings, toCookie } from "~/setting.server";
+import { getEnv, toCookie } from "~/env.server";
 import { useLoaderData, Form } from "@remix-run/react";
 
 export const meta: V2_MetaFunction = () => {
@@ -12,23 +12,23 @@ export const meta: V2_MetaFunction = () => {
 };
 
 export async function loader({ request, context }: LoaderArgs) {
-  const settings = await getSettings(request, context);
-  return json(settings);
+  const env = await getEnv(request, context);
+  return json(env);
 }
 
 export async function action({ request, context }: ActionArgs) {
-  const settings = await getSettings(request, context);
+  const env = await getEnv(request, context);
   const form = await request.formData();
 
   if (form.get("endpoint")) {
-    settings.endpoint = form.get("endpoint") as string;
+    env.endpoint = form.get("endpoint") as string;
   }
 
   return json(
     {},
     {
       headers: {
-        "Set-Cookie": await toCookie(settings),
+        "Set-Cookie": await toCookie(env),
       },
     }
   );

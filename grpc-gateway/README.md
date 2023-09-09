@@ -9,9 +9,9 @@ go install github.com/grpc-ecosystem/protoc-gen-grpc-gateway-ts@latest
 buf generate proto
 ```
 
-[フロントエンド(Remix)] -> [gRPC Gateway] -> [サーバ(Tonic)]
+[フロントエンド(Remix)] -> [gRPC Gateway] -> [サーバ(rust)]
 
-### サーバ
+### サーバ (rust)
 
 ```bash
 # サーバ起動
@@ -39,7 +39,7 @@ go run main.go
 - `localshot:8081`
 
 ```bash
-# gateway 経由でアクセス (rust を起動してあること前提)
+# gateway 経由でアクセス ( rust を起動してあること前提)
 curl -X POST -d '{"name":"john"}' \
     http://localhost:8081/greet.v1.GreetService/Greet
 ```
@@ -52,6 +52,7 @@ npm run dev
 ```
 
 - http://localshot:8788
+- http://localshot:8788/debug
 
 参考:
 

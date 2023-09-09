@@ -2,7 +2,7 @@ import type { ActionFunction, ActionArgs } from "@remix-run/server-runtime";
 import { Form, useActionData } from "@remix-run/react";
 import type { V2_MetaFunction } from "@remix-run/cloudflare";
 import { GreetService } from "~/pb/greet/v1/greet.pb";
-import { getSettings } from "~/setting.server";
+import { getEnv } from "~/env.server";
 
 export const meta: V2_MetaFunction = () => {
   return [
@@ -15,7 +15,7 @@ export const action: ActionFunction = async ({
   request,
   context,
 }: ActionArgs) => {
-  const settings = await getSettings(request);
+  const env = await getEnv(request, context);
 
   // フォームデータを取得
   const formData = await request.formData();
@@ -23,7 +23,7 @@ export const action: ActionFunction = async ({
   // サービス実行
   const resp = await GreetService.Greet(
     { name: formData.get("name")?.toString() },
-    { pathPrefix: settings.endpoint }
+    { pathPrefix: env.endpoint }
   );
 
   return { greeting: resp.greeting };
@@ -33,7 +33,7 @@ export default function Index() {
   const greeting = useActionData()?.greeting;
   return (
     <div className="mx-auto p-5 w-360">
-      <h1 className="text-3xl font-bold">{greeting}</h1>
+      <h1 className="text-3xl font-bold">New Remix App</h1>
       <div className="grid grid-cols-3">
         <Form method="post">
           <label className="col-span-2 my-2">
@@ -52,6 +52,7 @@ export default function Index() {
           </button>
         </Form>
       </div>
+      <p className="text-3xl font-bold">{greeting}</p>
     </div>
   );
 }
